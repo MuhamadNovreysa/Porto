@@ -160,7 +160,7 @@ section{
 }
 
 .change-text h3 .word .letter{
-    transform-origin: center center 50px ;
+    transform-origin: center center 15px ;
 }
 
 .change-text h3 .word .letter.out{
