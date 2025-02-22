@@ -160,7 +160,7 @@ section{
 }
 
 .change-text h3 .word .letter{
-    transform-origin: center center 25px ;
+    transform-origin: center center 50px ;
 }
 
 .change-text h3 .word .letter.out{
@@ -245,7 +245,7 @@ section{
 }
 
 .social-icons{
-    margin-top: 4rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: space-between;
     width: 220px;
