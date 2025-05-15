@@ -4,446 +4,1816 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Muhamad Novreysa</title>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+            scroll-behavior: smooth;
+            text-decoration: none;
+        }
+
+        :root {
+            --text-color: #f5f5f5;
+            --hover-color: #5f03f3;
+            --bg-color: #250821;
+            --secon-bg-color: #291e33;
+            --big-font: 2.5rem;
+            --normal-font: 2rem;
+            --neon-box-shadow: 0 0 .5rem #00fddb;
+            --h2-font: 3rem;
+            --font-neon-text-shadow: 0 0 10px rgba(0, 119, 255, 0.8),
+                0 0 20px rgba(0, 119, 255, 0.8),
+                0 0 30px rgba(0, 119, 255, 0.8),
+                0 0 40px rgba(0, 119, 255, 0.8),
+                0 0 70px rgba(0, 119, 255, 0.8),
+                0 0 80px rgba(0, 119, 255, 0.8),
+                0 0 100px rgba(0, 119, 255, 0.8),
+                0 0 150px rgba(0, 119, 255, 0.8);
+        }
+
+        ::-webkit-scrollbar {
+            height: 0;
+            width: .5rem;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secon-bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--hover-color);
+            border-radius: 5rem;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 12px 10%;
+            transition: all 0.3s ease;
+        }
+
+        header.sticky {
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--secon-bg-color);
+            padding: 12px 10%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-color);
+        }
+
+        span {
+            color: var(--hover-color);
+        }
+
+        .navlist {
+            display: flex;
+        }
+
+        .navlist a {
+            display: inline-block;
+            color: var(--text-color);
+            font-weight: 450;
+            padding: 10px 15px;
+            animation: slideAnimation 1s ease forwards;
+            animation-delay: calc(.3s * var(--i));
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .navlist a:hover {
+            color: var(--hover-color);
+            text-shadow: 0 0 10px rgba(0, 119, 255, 0.8),
+                0 0 20px rgba(0, 119, 255, 0.8),
+                0 0 30px rgba(0, 119, 255, 0.8),
+                0 0 40px rgba(0, 119, 255, 0.8),
+                0 0 70px rgba(0, 119, 255, 0.8),
+                0 0 80px rgba(0, 119, 255, 0.8),
+                0 0 100px rgba(0, 119, 255, 0.8),
+                0 0 150px rgba(0, 119, 255, 0.8);
+        }
+
+        .navlist a.active {
+            color: var(--hover-color);
+        }
+
+        #menu-icon {
+            font-size: 1.8rem;
+            z-index: 10001;
+            cursor: pointer;
+            margin-left: 25px;
+            background: var(--hover-color);
+            border-radius: 3px;
+            color: var(--secon-bg-color);
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .home {
+            min-height: 100vh;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            grid-gap: 4em;
+        }
+
+        .home-content {
+            max-width: 600px;
+        }
+
+        .home-content h1 {
+            font-size: var(--big-font);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .change-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .change-text h3 {
+            display: inline-flex;
+            margin: 0;
+            vertical-align: top;
+            height: 32px;
+            overflow: hidden;
+        }
+
+        .change-text h3 .word {
+            position: absolute;
+            display: flex;
+            opacity: 0;
+        }
+
+        .change-text h3 .word .letter {
+            transform-origin: center center 15px;
+        }
+
+        .change-text h3 .word .letter.out {
+            transform: rotateX(90deg);
+            transition: 0.5s cubic-bezier(0.6, 0, 0.7, 0.2);
+        }
+
+        .change-text h3 .word .letter.in {
+            transition: 1s ease;
+        }
+
+        .change-text h3 .word .letter.behind {
+            transform: rotateX(-90deg);
+        }
+
+        .text-justify {
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .home-content p {
+            color: #bdbdbd;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            width: 320px;
+            height: 45px;
+        }
+
+        .btn-box .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 100%;
+            background: var(--hover-color);
+            color: var(--bg-color);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: .6s;
+            box-shadow: var(--neon-box-shadow);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 2px solid var(--hover-color);
+        }
+
+        .btn:hover {
+            color: var(--hover-color);
+        }
+
+        .btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--bg-color);
+            width: 0;
+            height: 100%;
+            z-index: -1;
+            transition: .4s;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:nth-child(2) {
+            background: var(--bg-color);
+            color: var(--hover-color);
+        }
+
+        .btn:nth-child(2):hover {
+            color: var(--bg-color);
+        }
+
+        .btn:nth-child(2):before {
+            background: var(--hover-color);
+        }
+
+        .social-icons {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            width: 220px;
+            height: 40px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 50px;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-color);
+            color: var(--hover-color);
+            border: 2px solid var(--hover-color);
+            transition: .6s;
+            box-shadow: 0 0 0.3rem #00fddb;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .social-icons a i {
+            font-size: 1.5rem;
+        }
+
+        .social-icons a:hover {
+            color: var(--bg-color);
+        }
+
+        .social-icons a::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: var(--hover-color);
+            transition: .6s;
+            z-index: -1;
+        }
+
+        .social-icons a:hover:before {
+            width: 100%;
+        }
+
+        .home-image {
+            position: relative;
+        }
+
+        .img-box {
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        @keyframes floatImage {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .liquid-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            left: 3.7%;
+            top: -43%;
+        }
+
+        .liquid-shape:nth-child(2) {
+            filter: blur(50px);
+        }
+
+        /* about Section css */
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            grid-gap: 2em;
+            background: var(--secon-bg-color);
+        }
+
+        .about .img-about {
+            text-align: center;
+            position: relative;
+            flex: 1 1 300px;
+        }
+
+        .about .img-about img {
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-content {
+            flex: 1 1 500px;
+        }
+
+        .about-content span {
+            color: #fdfdfd;
+            font-size: .8rem;
+            font-weight: 200;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-content h2 {
+            color: var(--hover-color);
+            font-weight: 700;
+            font-size: var(--normal-font);
+            margin: 1rem 0;
+        }
+
+        .about-content h3 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .about-content p {
+            color: #fdfdfd;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-about1,
+        .info-about2,
+        .info-about3 {
+            background: var(--bg-color);
+            font-size: .5rem;
+            position: absolute;
+            padding: 10px;
+            width: 90px;
+            height: 90px;
+            border-radius: 69% 31% 66% 34% / 21% 30% 70% 79%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--neon-box-shadow);
+            border: 1px solid var(--hover-color);
+            outline: 2px solid var(--bg-color);
+            z-index: 100;
+            animation: morph 6s linear infinite;
+        }
+
+        .info-about1 {
+            left: 10%;
+            top: 34%;
+        }
+
+        .info-about2 {
+            left: 61%;
+            top: 70%;
+        }
+
+        .info-about3 {
+            left: 66%;
+            top: 15%;
+        }
+
+        .img-about span {
+            color: var(--hover-color);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* portofolio section css */
+        .main-text {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .main-text span {
+            color: #fdfdfd;
+            font-size: .8rem;
+            font-weight: 200;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .main-text h2 {
+            font-weight: 700;
+            font-size: var(--normal-font);
+            color: var(--hover-color);
+        }
+
+        .fillter-buttons {
+            margin: 2rem 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .fillter-buttons .button {
+            background: none;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            font-size: .85rem;
+            font-weight: 600;
+            letter-spacing: .4px;
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--hover-color);
+        }
+
+        .fillter-buttons .button:hover,
+        .fillter-buttons .button.active {
+            color: var(--hover-color);
+            background: rgba(95, 3, 243, 0.1);
+            box-shadow: var(--neon-box-shadow);
+        }
+
+        .portofolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .port-box {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #291e33;
+            display: flex;
+            grid-template-rows: 1fr auto;
+            align-items: center;
+            border: 2px solid var(--hover-color);
+            box-shadow: var(--neon-box-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .port-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .port-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .port-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .port-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background: linear-gradient(rgba(0, 0, 0, .8), var(--hover-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            transition: 0.5s;
+            padding: 0.2rem;
+        }
+
+        .port-box:hover .port-content {
+            opacity: 1;
+        }
+
+        .port-box:hover .port-image img {
+            transform: scale(1.1);
+        }
+
+        .port-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .port-content p {
+            font-size: .8rem;
+            margin: 5px 0 15px 0;
+        }
+
+        .port-content a {
+            background: #fff;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--hover-color);
+            outline: 2px solid #fff;
+            transition: all 0.3s ease;
+        }
+
+        .port-content a:hover {
+            transform: scale(1.1);
+        }
+
+        .port-content a i {
+            font-size: 1.3rem;
+            color: var(--secon-bg-color);
+        }
+
+        /* services section css */
+        .section-services {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            grid-gap: 2rem;
+        }
+
+        .section-services .service-box {
+            flex: 1 1 300px;
+            padding: 2rem 1rem 2rem;
+            text-align: center;
+            background: var(--secon-bg-color);
+            transition: transform .4s;
+            border-radius: 10px;
+            border: 2px solid var(--hover-color);
+            box-shadow: var(--neon-box-shadow);
+        }
+
+        .service-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-btn {
+            width: auto;
+            justify-content: center;
+        }
+
+        .service-icon {
+            border: 2px solid var(--hover-color);
+            padding: 2rem;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-radius: 50%;
+            position: relative;
+            color: var(--hover-color);
+            box-shadow: var(--neon-box-shadow);
+            outline: 3px solid var(--bg-color);
+            margin: 0 auto;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-box h3 {
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .service-box p {
+            margin: .5rem 0 1.5rem 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #bdbdbd;
+            line-height: 1.6;
+        }
+
+        /* skill section css */
+        .skills {
+            background: var(--secon-bg-color);
+        }
+
+        .skill-main {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-row-gap: 30px;
+            grid-column-gap: 50px;
+        }
+
+        .skill-bar {
+            margin-bottom: 2.3rem;
+        }
+
+        .skill-main h3 {
+            margin-bottom: 2rem;
+            font-size: var(--normal-font);
+            text-align: center;
+        }
+
+        .skill-left .skill-bar .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .skill-left .skill-bar .bar {
+            width: 100%;
+            height: 10px;
+            background-color: var(--bg-color);
+            border-radius: 25px;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .skill-bar .bar span {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            background: var(--hover-color);
+            border-radius: 25px;
+            box-shadow: var(--neon-box-shadow);
+        }
+
+        .skill-bar .bar .html {
+            width: 83%;
+            animation: html 4s;
+        }
+
+        .skill-bar .bar .css {
+            width: 80%;
+            animation: css 5s;
+        }
+
+        .skill-bar .bar .canva {
+            width: 90%;
+            animation: canva 6s;
+        }
+
+        .skill-bar .bar .writer {
+            width: 85%;
+            animation: writer 7s;
+        }
+
+        /* skill right */
+        .professional {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .box {
+            position: relative;
+            margin: 10px 0;
+            flex: 1 1 15rem;
+        }
+
+        .box .text {
+            text-align: center;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .box .text big {
+            font: 400;
+            letter-spacing: 1px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .box .text small {
+            display: block;
+            font-weight: 600;
+        }
+
+        .circle {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--hover-color);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: var(--neon-box-shadow);
+        }
+
+        .circle .points {
+            width: 2px;
+            height: 10px;
+            background-color: var(--bg-color);
+            position: absolute;
+            border-radius: 3px;
+            transform: rotate(calc(var(--i) * var(--rot))) translateY(-45px);
+        }
+
+        .points.marked {
+            animation: glow 0.04s linear forwards;
+            animation-delay: calc(var(--i) * 0.05s);
+        }
+
+        /* Project section css */
+        .project-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-item {
+            background: var(--secon-bg-color);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--hover-color);
+            transition: all 0.3s ease;
+            height: 100px;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-box-shadow);
+        }
+
+        .project-item img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .AMA {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .AMA span {
+            color: #fdfdfd;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .AMA-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .AMA-item {
+            background: var(--secon-bg-color);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--hover-color);
+            transition: all 0.3s ease;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .AMA-item::before,
+        .AMA-item::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 0;
+            background: var(--hover-color);
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+
+        .AMA-item::before {
+            left: 0;
+            top: auto;
+            bottom: 0;
+        }
+
+        .AMA-item::after {
+            right: 0;
+            top: 0;
+            bottom: auto;
+        }
+
+        .AMA-item:hover::before,
+        .AMA-item:hover::after {
+            height: 100%;
+        }
+
+        .AMA-item img {
+            max-width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        /* Contact section css */
+        .contact {
+            background: #3e1168;
+            width: 100%;
+        }
+
+        .contact form {
+            text-align: center;
+            max-width: 50rem;
+            margin: 1rem auto;
+            margin-bottom: 3rem;
+        }
+
+        .contact form input,
+        .contact form textarea {
+            width: 100%;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin-bottom: .8rem;
+            border: none;
+            border-radius: 5px;
+            padding: .7rem;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .contact .alert {
+            text-align: center;
+            color: white;
+        }
+
+        .contact form textarea {
+            resize: none;
+            height: 150px;
+        }
+
+        .formBtn {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .formBtn .btn {
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* footer css */
+        footer {
+            padding: 1.5rem 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--secon-bg-color);
+        }
+
+        footer p {
+            color: #fdfdfd;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            display: inline-flex;
+            justify-content: center;
+            color: var(--text-color);
+            background: var(--hover-color);
+            padding: .6rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-box-shadow);
+        }
+
+        footer a i {
+            font-size: 1rem;
+            color: var(--secon-bg-color);
+        }
+
+        /* parallax */
+        .scroll-scale {
+            opacity: 0;
+            transform: scale(.9);
+            transition: all 2s;
+        }
+
+        .scroll-bottom {
+            opacity: 0;
+            transform: translateY(300px);
+            transition: 3s;
+        }
+
+        .scroll-top {
+            opacity: 0;
+            transform: translateY(-300px);
+            transition: 3s;
+        }
+
+        .show-items {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1200px) {
+            .home {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .home-image {
+                order: -1;
+                margin-top: 2rem;
+            }
+
+            .liquid-shape {
+                display: none;
+            }
+
+            .skill-main {
+                grid-template-columns: 1fr;
+            }
+
+            .professional {
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            header.sticky {
+                padding: 15px 5%;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .navlist {
+                position: absolute;
+                top: 100%;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-color);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+            }
+
+            .navlist.active {
+                left: 0;
+            }
+
+            .navlist a {
+                display: block;
+                padding: 15px 0;
+                font-size: 1.2rem;
+                animation: none;
+                opacity: 1;
+            }
+
+            #menu-icon {
+                display: block;
+            }
+
+            .btn-box {
+                width: 100%;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .social-icons {
+                width: 100%;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .about .img-about {
+                margin-bottom: 3rem;
+            }
+
+            .info-about1,
+            .info-about2,
+            .info-about3 {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home-content h1 {
+                font-size: 2rem;
+            }
+
+            .change-text {
+                font-size: 1.2rem;
+            }
+
+            .portofolio-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .project-container {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .AMA-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .change-text {
+                font-size: 1rem;
+            }
+
+            .btn-box {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .btn-box .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .portofolio-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .project-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .AMA-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        /*keyframes */
+        @keyframes morph {
+
+            0%,
+            100% {
+                border-radius: 20% 40% 50% 10% / 20% 20% 40% 30%;
+            }
+
+            30% {
+                border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+            }
+
+            60% {
+                border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%
+            }
+
+            80% {
+                border-radius: 69% 31% 66% 34% / 21% 30% 70% 79%;
+            }
+        }
+
+        @keyframes html {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 83%;
+            }
+        }
+
+        @keyframes css {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 80%;
+            }
+        }
+
+        @keyframes canva {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 90%;
+            }
+        }
+
+        @keyframes writer {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 85%;
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                background: var(--bg-color);
+                box-shadow: none;
+            }
+
+            100% {
+                background: var(--hover-color);
+                box-shadow: var(--neon-box-shadow);
+            }
+        }
+
+        @keyframes slideAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
+
 <body>
-<!--header site -->
-<header>
-    <div class="logo"><span>Muhamad </span>Novreysa.</div>
-    <ul class="navlist">
-        <li><a href="#home" style="--i:1;">Home</a></li>
-        <li><a href="#about" style="--i:2;">About</a></li>
-        <li><a href="#portofolio" style="--i:3;">Portofolio</a></li>
-        <li><a href="#services" style="--i:4;">Services</a></li>
-        <li><a href="#skills" style="--i:5;">Skills</a></li>
-        <li><a href="#project" style="--i:6;">Project</a></li>
-        <li><a href="#contact" style="--i:7;">Contact</a></li>
-    </ul>
-    <div id="menu-icon" class="bx bx-menu"></div>
-</header>
+    <!--header site -->
+    <header>
+        <div class="logo"><span>Muhamad </span>Novreysa.</div>
+        <ul class="navlist">
+            <li><a href="#home" style="--i:1;">Home</a></li>
+            <li><a href="#about" style="--i:2;">About</a></li>
+            <li><a href="#portofolio" style="--i:3;">Portofolio</a></li>
+            <li><a href="#services" style="--i:4;">Services</a></li>
+            <li><a href="#skills" style="--i:5;">Skills</a></li>
+            <li><a href="#project" style="--i:6;">Project</a></li>
+            <li><a href="#contact" style="--i:7;">Contact</a></li>
+        </ul>
+        <div id="menu-icon" class="bx bx-menu"></div>
+    </header>
 
+    <!-- home section -->
+    <section id="home" class="home">
+        <div class="home-content scroll-scale">
+            <h1>I'm Muhamad Novreysa</h1>
+            <div class="change-text">
+                <h3>And I'm</h3>
+                <h3>
+                    <span class="word">Digital&nbsp;Marketing</span>
+                    <span class="word">KOL&nbsp;Manager</span>
+                    <span class="word">Community&nbsp;Manager</span>
+                </h3>
+            </div>
+            <p class="text-justify">Welcome to my portfolio! I am a student at Pelita Bangsa University, majoring in
+                Digital Business. I am 22 years old. I started my career in crypto in 2018. You can see what I do in the
+                crypto industry regarding my skills and work experience here.
+            </p>
 
-<!-- home section ------------------------- ------------------------------------------>
-<section id="home" class="home">
-    <div class="home-content scroll-scale">
-        <h1>I'm Muhamad Novreysa</h1>
-        <div class="change-text">
-            <h3>And I'm</h3>
-              <h3>
-                 <span class="word">Digital&nbsp;Marekting</span>
-                 <span class="word">KOL&nbsp;Manager</span>
-                 <span class="word">Community&nbsp;Manager</span>
-              </h3>
-        </div>
-        <p class="text-justify">Welcome to my portfolio! I am a student at Pelita Bangsa University, majoring in Digital Business. I am 22 years old. I started my career in crypto in 2018. You can see what I do in the crypto industry regarding my skills and work experience here.
-             </p>
-
-            <div class ="btn-box">
+            <div class="btn-box">
                 <a href="CV Muhamad Novreysa.pdf" class="btn"> Download CV</a>
                 <a href="Certificate.jpg" class="btn"> Certificate!</a>
             </div>
-    
+
             <div class="social-icons">
                 <a href="https://t.me/Novreysa"><i class='bx bxl-telegram'></i></a>
                 <a href="https://twitter.com/oxkuca"><i class='bx bxl-twitter'></i></a>
-                <a href="muhammadnovreysa@gmail.com"><i class='bx bxl-gmail' ></i></a>
-                <a href="https://www.linkedin.com/in/MuhamadNovreysa"><i class='bx bxl-linkedin' ></i></a>
-            </div>    
-    </div>
-    <div class="home-image scroll-scale">
-        <div class="img-box">
-            <img src="boyy.png" alt="">
-        </div>
-        <div class="liquid-shape">
-            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www
-            .w3.org/1999/xlink" width="100%" id="blobSvg">
-            <path  fill="#5f03f3">
-                <animate attributeName="d"
-                    dur="20000ms"
-                    repeatCount="indefinite"
-                    values="
-                    M389.5,283Q364,316,348.5,355.5Q333,395,291.5,433Q250,471,204.5,439Q159,407,126,373.5Q93,340,86,295Q79,250,97,211Q115,172,124,110Q133,48,191.5,76Q250,104,299.5,91Q349,78,360.5,128.5Q372,179,393.5,214.5Q415,250,389.5,283Z;
-                    "
-                ></animate>
-            </path>
-            </svg>
-           </div>
-
-        <div class="liquid-shape">
-            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www
-            .w3.org/1999/xlink" width="100%" id="blobSvg">
-            <path  fill="#5f03f3">
-                <animate attributeName="d"
-                    dur="20000ms"
-                    repeatCount="indefinite"
-                    values="
-                    M389.5,283Q364,316,348.5,355.5Q333,395,291.5,433Q250,471,204.5,439Q159,407,126,373.5Q93,340,86,295Q79,250,97,211Q115,172,124,110Q133,48,191.5,76Q250,104,299.5,91Q349,78,360.5,128.5Q372,179,393.5,214.5Q415,250,389.5,283Z;
-                    "
-                ></animate>
-            </path>
-            </svg>
-           </div>
-    </div>
-</section>
-
-<!-- about section -------------------------------------------------------------------->
-<section id="about" class="about">
-    <div class="img-about scroll-scale">
-        <img src="boyy.png" alt="">
-        <div class="info-about1">
-            <span>5+</span>
-            <p>Years of Exprrience</p>
-        </div>
-        <div class="info-about2">
-            <span>5+</span>
-            <p>Working with Project</p>
-        </div>
-        <div class="info-about3">
-            <span>+20</span>
-            <p>Sucessful Organized AMA</p>
-        </div>
-    </div>
-
-    <div class="about-content">
-        <span>Let me introduce myself</span>
-        <h2>About me</h2>
-            <h3>A story  of good</h3>
-            <p class="text-justify"> 2018 was the year I was introduced to cryptocurrency. Starting as a beginner, I learned about how cryptocurrency works. In that year, there was a trend of mining and ICOs, which made me interested in learning about it so that I could analyze to find out crypto projects that have potential or rug pulls from tokenomics and smart contracts (token flow).<p>
-            <p class="text-justify"> My journey began with a strong determination to understand crypto projects in various narratives. Through self-learning and actively engaging in crypto projects to build a networking, I gained invaluable knowledge and experience. I learned about community building, collaboration, strategy development, and project analysis from fundamental techniques. These skills allowed me to make the right decisions and made it easier for me to invest in cryptocurrencies.</p>
-            <p class="text-justify"> In the end, I decided to work in the crypto industry in various positions to experience being part of a crypto project team and build a strong network in the industry. 6 years have passed; it was not an easy journey to be in this situation. I believe that with determination and strong goals, anyone can realize their dreams. I am looking forward to the future and an exciting new chapter in my career journey.</p>
-    </div>
-</section>
-
-<!-- portofolio section ------------------------------------------------------------------->
-<section id="portofolio" class="portofolio"> 
-    <div class="main-text scroll-scale">
-        <span>What i will do for you</span>
-        <h2>Last Poject</h2>
-    </div>
-    <div class="container">
-        <div class="fillter-buttons scroll-scale">
-            <button class="button">Marketing</button>
-            <button class="button">Community Manager</button>
-            <button class="button">KOL Manager</button>
-        </div>
-
-        <div class="portofolio-gallery scroll-bottom">
-            <div class="port-box">
-                <div class="port-image">
-                    <img src="portofolio.jpg" alt="">
-                </div>
-                <div class="port-content">
-                    <h3>Marketing</h3>
-                    <p>
-                        DETECTIVEID - "A community for education about web3 for get real-adoption." 
-                    </p>
-                    <a href="#"><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
-
-            <div class="port-box">
-                <div class="port-image">
-                    <img src="portofolio2.jpg" alt="">
-                </div>
-                <div class="port-content">
-                    <h3>Community Manager</h3>
-                    <p>
-                        INTELLISHARE - "Distributed Network Ecology Built BY Blockchain."
-                    </p>
-                    <a href="#"><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
-
-            <div class="port-box">
-                <div class="port-image">
-                    <img src="portofolio3.jpg" alt="">
-                </div>
-                <div class="port-content">
-                    <h3>KOL Manager</h3>
-                    <p>
-                        GEODB -  "A Decentralized Big Data Ecosystem That Rewards You For The Data You Generate"
-                    </p>
-                    <a href="#"><i class='bx bx-link-external'></i></a>
-                </div>
+                <a href="mailto:muhammadnovreysa@gmail.com"><i class='bx bxl-gmail'></i></a>
+                <a href="https://www.linkedin.com/in/MuhamadNovreysa"><i class='bx bxl-linkedin'></i></a>
             </div>
         </div>
-    </div>
-</section>
+        <div class="home-image scroll-scale">
+            <div class="img-box">
+                <img src="boyy.png" alt="Profile Image">
+            </div>
+                        <div class="liquid-shape">
+                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="100%" id="blobSvg">
+                    <path fill="#5f03f3">
+                        <animate attributeName="d" dur="20000ms" repeatCount="indefinite" values="
+                        M389.5,283Q364,316,348.5,355.5Q333,395,291.5,433Q250,471,204.5,439Q159,407,126,373.5Q93,340,86,295Q79,250,97,211Q115,172,124,110Q133,48,191.5,76Q250,104,299.5,91Q349,78,360.5,128.5Q372,179,393.5,214.5Q415,250,389.5,283Z;
+                        M430.5,299.5Q419,349,381,376Q343,403,296.5,421.5Q250,440,200,420Q150,400,116.5,366Q83,332,65.5,291Q48,250,74,210Q100,170,131.5,138.5Q163,107,206.5,94Q250,81,297.5,92.5Q345,104,382,133.5Q419,163,428.5,206.5Q438,250,430.5,299.5Z;
+                        M389.5,283Q364,316,348.5,355.5Q333,395,291.5,433Q250,471,204.5,439Q159,407,126,373.5Q93,340,86,295Q79,250,97,211Q115,172,124,110Q133,48,191.5,76Q250,104,299.5,91Q349,78,360.5,128.5Q372,179,393.5,214.5Q415,250,389.5,283Z">
+                        </animate>
+                    </path>
+                </svg>
+            </div>
 
- <!-- service section ------------------------------------------------------------------->
- <section id="services" class="services">
-    <div class="main-text scroll-scale">
-        <span>What i will do for you</span>
-        <h2>Our Services</h2>
-    </div>
+            <div class="liquid-shape">
+                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="100%" id="blobSvg">
+                    <path fill="#5f03f3">
+                        <animate attributeName="d" dur="30000ms" repeatCount="indefinite" values="
+                        M389.5,283Q364,316,348.5,355.5Q333,395,291.5,433Q250,471,204.5,439Q159,407,126,373.5Q93,340,86,295Q79,250,97,211Q115,172,124,110Q133,48,191.5,76Q250,104,299.5,91Q349,78,360.5,128.5Q372,179,393.5,214.5Q415,250,389.5,283Z;
+                        M430.5,299.5Q419,349,381,376Q343,403,296.5,421.5Q250,440,200,420Q150,400,116.5,366Q83,332,65.5,291Q48,250,74,210Q100,170,131.5,138.5Q163,107,206.5,94Q250,81,297.5,92.5Q345,104,382,133.5Q419,163,428.5,206.5Q438,250,430.5,299.5Z;
+                        M389.5,283Q364,316,348.5,355.5Q333,395,291.5,433Q250,471,204.5,439Q159,407,126,373.5Q93,340,86,295Q79,250,97,211Q115,172,124,110Q133,48,191.5,76Q250,104,299.5,91Q349,78,360.5,128.5Q372,179,393.5,214.5Q415,250,389.5,283Z">
+                        </animate>
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </section>
 
-    <div class="section-services scroll-bottom">
-        <div class="service-box">
-            <i class='bx bx-desktop service-icon'></i>
-            <h3>Ask Me Anything</h3>
-            <p>
-                Text/Voice/Video
-            </p>
-            <div class="btn-box service-btn">
-                <a href="https://t.me/Novreysa" class="btn">Detail More</a>
+    <!-- about section -->
+    <section id="about" class="about">
+        <div class="img-about scroll-scale">
+            <img src="boyy.png" alt="About Image">
+            <div class="info-about1">
+                <span>5+</span>
+                <p>Years of Experience</p>
+            </div>
+            <div class="info-about2">
+                <span>5+</span>
+                <p>Working with Project</p>
+            </div>
+            <div class="info-about3">
+                <span>+20</span>
+                <p>Successful Organized AMA</p>
             </div>
         </div>
 
-        <div class="service-box">
-            <i class='bx bxs-edit-alt service-icon'></i>
-            <h3>Node Sale & IDO</h3>
-            <p>
-                Partnered with top Launchpad & 15+ succesfully project
-            </p>
-            
-            <div class="btn-box service-btn">
-                <a href="https://t.me/Novreysa" class="btn">Detail More</a>
-            </div>
+        <div class="about-content">
+            <span>Let me introduce myself</span>
+            <h2>About me</h2>
+            <h3>A story of good</h3>
+            <p class="text-justify">2018 was the year I was introduced to cryptocurrency. Starting as a beginner, I
+                learned about how cryptocurrency works. In that year, there was a trend of mining and ICOs, which made me
+                interested in learning about it so that I could analyze to find out crypto projects that have potential
+                or rug pulls from tokenomics and smart contracts (token flow).</p>
+            <p class="text-justify">My journey began with a strong determination to understand crypto projects in various
+                narratives. Through self-learning and actively engaging in crypto projects to build a networking, I gained
+                invaluable knowledge and experience. I learned about community building, collaboration, strategy
+                development, and project analysis from fundamental techniques. These skills allowed me to make the right
+                decisions and made it easier for me to invest in cryptocurrencies.</p>
+            <p class="text-justify">In the end, I decided to work in the crypto industry in various positions to
+                experience being part of a crypto project team and build a strong network in the industry. 6 years have
+                passed; it was not an easy journey to be in this situation. I believe that with determination and strong
+                goals, anyone can realize their dreams. I am looking forward to the future and an exciting new chapter in
+                my career journey.</p>
         </div>
+    </section>
 
-        <div class="service-box">
-            <i class='bx bxs-layer service-icon'></i>
-            <h3>Listing CEX</h3>
-            <p>
-                Partnered with Mexc and LBank
-            </p>
-            <div class="btn-box service-btn">
-                <a href="https://t.me/Novreysa" class="btn">Detail More</a>
-            </div>
+    <!-- portofolio section -->
+    <section id="portofolio" class="portofolio">
+        <div class="main-text scroll-scale">
+            <span>What i will do for you</span>
+            <h2>Last Project</h2>
         </div>
-    </div>
-</section>
-
-<!-- skills section ------------------------------------------------------------------->
-<section id="skills" class="skills">
-    <div class="main-text scroll-scale">
-        <span>tecnical and profesional</span>
-        <h2>My Skill</h2>
-    </div>
-
-    <div class="skill-main">
-        <div class="skill-left scroll-scale">
-            <h3>Tecnical Skills</h3>
-            <div class="skill-bar">
-                <div class="info">
-                    <p>HTML</p>
-                    <p>83%</p>
-                </div>
-                <div class="bar">
-                    <span class="html"></span>
-                </div>
+        <div class="container">
+            <div class="fillter-buttons scroll-scale">
+                <button class="button active" data-filter="all">All</button>
+                <button class="button" data-filter=".marketing">Marketing</button>
+                <button class="button" data-filter=".community">Community Manager</button>
+                <button class="button" data-filter=".kol">KOL Manager</button>
             </div>
 
-            <div class="skill-bar">
-                <div class="info">
-                    <p>CSS</p>
-                    <p>80%</p>
-                </div>
-                <div class="bar">
-                    <span class="css"></span>
-                </div>
-            </div>
-
-            <div class="skill-bar">
-                <div class="info">
-                    <p>Canva</p>
-                    <p>90%</p>
-                </div>
-                <div class="bar">
-                    <span class="canva"></span>
-                </div>
-            </div>
-
-            <div class="skill-bar">
-                <div class="info">
-                    <p>Wrodpress</p>
-                    <p>85%</p>
-                </div>
-                <div class="bar">
-                    <span class="writer"></span>
-                </div>
-            </div>
-        </div>
-        <div>
-        <div class="skill-right scroll-scale">
-            <h3>Profesional Skill</h3>
-            <div class="porfessional">
-                <div class="box">
-                    <div class="circle" data-dots="80" data-percent="90"></div>
-                    <div class="text">
-                        <big>90%</big>
-                        <small>Team Work</small>
-                    </div>    
+            <div class="portofolio-gallery scroll-bottom">
+                <div class="port-box mix marketing">
+                    <div class="port-image">
+                        <img src="portofolio.jpg" alt="">
+                    </div>
+                    <div class="port-content">
+                        <h3>Marketing</h3>
+                        <p>
+                            DETECTIVEID - "A community for education about web3 for get real-adoption."
+                        </p>
+                        <a href="#"><i class='bx bx-link-external'></i></a>
+                    </div>
                 </div>
 
-                <div class="box">
-                    <div class="circle" data-dots="80" data-percent="85"></div>
-                    <div class="text">
-                        <big>85%</big>
-                        <small>Communication</small>
-                    </div>    
+                <div class="port-box mix community">
+                    <div class="port-image">
+                        <img src="portofolio2.jpg" alt="">
+                    </div>
+                    <div class="port-content">
+                        <h3>Community Manager</h3>
+                        <p>
+                            INTELLISHARE - "Distributed Network Ecology Built BY Blockchain."
+                        </p>
+                        <a href="#"><i class='bx bx-link-external'></i></a>
+                    </div>
                 </div>
 
-                <div class="box">
-                    <div class="circle" data-dots="80" data-percent="80"></div>
-                    <div class="text">
-                        <big>90%</big>
-                        <small>Community Building</small>
-                    </div>    
-                </div>
-
-                <div class="box">
-                    <div class="circle" data-dots="80" data-percent="85"></div>
-                    <div class="text">
-                        <big>85%</big>
-                        <small>Marketing</small>
-                    </div>    
+                <div class="port-box mix kol">
+                    <div class="port-image">
+                        <img src="portofolio3.jpg" alt="">
+                    </div>
+                    <div class="port-content">
+                        <h3>KOL Manager</h3>
+                        <p>
+                            GEODB - "A Decentralized Big Data Ecosystem That Rewards You For The Data You Generate"
+                        </p>
+                        <a href="#"><i class='bx bx-link-external'></i></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
- <!-- Project section ------------------------------------------------------------------>
- <section id="project" class="project">
-    <div class="main-text scroll-scale">
-        <span>List the AMA project</span>
-    </div>
-    <div class="section-services scroll-bottom">
-        <div class="service-box">
-            <div class="row">
-                        <div class="column">
-                            <img src="Project19.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project9.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project3-removebg-preview (1).png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project11-removebg-preview.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project13-removebg-preview.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project7.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project08.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project2.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project14-removebg-preview.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project18.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project5-removebg-preview.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project16.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project4.png" height="100px;"> 
-                        </div>
-                        <div class="column">
-                            <img src="Project6-removebg-preview.png" height="100px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project1-removebg-preview.png" height="100px;"> 
-                        </div>
-                        <div class="column">
-                            <img src="Project12-removebg-preview.png" height="100px;">
-                        </div>
-                        <div class="column3">
-                            <img src="Project17.png" height="70px;">
-                        </div>
-                        <div class="column1">>
-                            <img src="Project10-removebg-preview.png" height="50px;">
-                         </div>
-                        <div class="column2">
-                            <img src="Project15-removebg-preview.png" height="50px;">
-                        </div>
-                        <div class="column">
-                            <img src="Project20.png" height="100px;">
-                        </div>
-                </div>
-            </div>
+    <!-- service section -->
+    <section id="services" class="services">
+        <div class="main-text scroll-scale">
+            <span>What i will do for you</span>
+            <h2>Our Services</h2>
         </div>
-    </div>
 
- 
-    <div class="AMA">
-        <span>My experience in the blockchain sector</span>
-        <div class="section-services scroll-scale">
+        <div class="section-services scroll-bottom">
             <div class="service-box">
-                <div class="row">
-                    <ul>
-                        <li><img src="[removal.ai]_5bb20b11-6583-4cf2-98c1-d5cfe460ed72-image-6_RTTPTN.png" alt=""></li>
-                        <li><img src="image__9_-removebg-preview.png" alt=""></li>
-                        <li><img src="geodb (3).png" alt=""></li>
-                        <li><img src="geodb (2).png" alt=""></li>
-                        <li><img src="geodb (4).png" alt=""></li>
-                    
-                    </ul>
+                <i class='bx bx-desktop service-icon'></i>
+                <h3>Ask Me Anything</h3>
+                <p>
+                    Text/Voice/Video
+                </p>
+                <div class="btn-box service-btn">
+                    <a href="https://t.me/Novreysa" class="btn">Detail More</a>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <i class='bx bxs-edit-alt service-icon'></i>
+                <h3>Node Sale & IDO</h3>
+                <p>
+                    Partnered with top Launchpad & 15+ successfully project
+                </p>
+
+                <div class="btn-box service-btn">
+                    <a href="https://t.me/Novreysa" class="btn">Detail More</a>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <i class='bx bxs-layer service-icon'></i>
+                <h3>Listing CEX</h3>
+                <p>
+                    Partnered with Mexc and LBank
+                </p>
+                <div class="btn-box service-btn">
+                    <a href="https://t.me/Novreysa" class="btn">Detail More</a>
                 </div>
             </div>
         </div>
-            
-        
-    </div>
-</section>
+    </section>
 
-    
-
- <!-- Contact section ------------------------------------------------------------------->
- 
- <section id="contact" class="contant">
-    <div class="main-text scroll-scale">
-        <span>ask me question</span>
-        <h2>Contact Me</h2>
-    </div>
-    <form method="post" name="portofolio-contact" action=""class="scroll-top">
-        
-        <input type="text" placeholder="Your Name" name="nama">
-        <input type="text" placeholder="Your Number" name="number">
-        <input type="email" placeholder="Your Email" name="email">
-        <textarea name="pesan" id="pesan" cols="30" rows="10" placeholder="Your Message" name="pesan"></textarea>
-        <div class="btn-box formBtn"> 
-            <button type="submit" action="https://script.google.com/macros/s/AKfycbwICW7CVt6Uc9RXhobYfdwmrfg15lGI1g2HPicViIfHhbormwor5fjDPgPlO5fGMXKA/exec" class="btn btn-primary d-none btn-kirim">Send Message</button>
-
+    <!-- skills section -->
+    <section id="skills" class="skills">
+        <div class="main-text scroll-scale">
+            <span>technical and professional</span>
+            <h2>My Skill</h2>
         </div>
-            
+
+        <div class="skill-main">
+            <div class="skill-left scroll-scale">
+                <h3>Technical Skills</h3>
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>HTML</p>
+                        <p>83%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="html"></span>
+                    </div>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>CSS</p>
+                        <p>80%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="css"></span>
+                    </div>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>Canva</p>
+                        <p>90%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="canva"></span>
+                    </div>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>Wordpress</p>
+                        <p>85%</p>
+                    </div>
+                    <div class="bar">
+                        <span class="writer"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-right scroll-scale">
+                <h3>Professional Skill</h3>
+                <div class="professional">
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="90"></div>
+                        <div class="text">
+                            <big>90%</big>
+                            <small>Team Work</small>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="85"></div>
+                        <div class="text">
+                            <big>85%</big>
+                            <small>Communication</small>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="80"></div>
+                        <div class="text">
+                            <big>90%</big>
+                            <small>Community Building</small>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="85"></div>
+                        <div class="text">
+                            <big>85%</big>
+                            <small>Marketing</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project section -->
+    <section id="project" class="project">
+        <div class="main-text scroll-scale">
+            <span>List the AMA project</span>
+            <h2>My Projects</h2>
+        </div>
         
-    </form>
+        <div class="project-container">
+            <div class="project-item">
+                <img src="Project19.png" alt="Project 1">
+            </div>
+            <div class="project-item">
+                <img src="Project9.png" alt="Project 2">
+            </div>
+            <div class="project-item">
+                <img src="Project3-removebg-preview (1).png" alt="Project 3">
+            </div>
+            <div class="project-item">
+                <img src="Project11-removebg-preview.png" alt="Project 4">
+            </div>
+            <div class="project-item">
+                <img src="Project13-removebg-preview.png" alt="Project 5">
+            </div>
+            <div class="project-item">
+                <img src="Project7.png" alt="Project 6">
+            </div>
+            <div class="project-item">
+                <img src="Project08.png" alt="Project 7">
+            </div>
+            <div class="project-item">
+                <img src="Project2.png" alt="Project 8">
+            </div>
+            <div class="project-item">
+                <img src="Project14-removebg-preview.png" alt="Project 9">
+            </div>
+            <div class="project-item">
+                <img src="Project18.png" alt="Project 10">
+            </div>
+            <div class="project-item">
+                <img src="Project5-removebg-preview.png" alt="Project 11">
+            </div>
+            <div class="project-item">
+                <img src="Project16.png" alt="Project 12">
+            </div>
+            <div class="project-item">
+                <img src="Project4.png" alt="Project 13">
+            </div>
+            <div class="project-item">
+                <img src="Project6-removebg-preview.png" alt="Project 14">
+            </div>
+            <div class="project-item">
+                <img src="Project1-removebg-preview.png" alt="Project 15">
+            </div>
+            <div class="project-item">
+                <img src="Project12-removebg-preview.png" alt="Project 16">
+            </div>
+            <div class="project-item">
+                <img src="Project17.png" alt="Project 17">
+            </div>
+            <div class="project-item">
+                <img src="Project10-removebg-preview.png" alt="Project 18">
+            </div>
+            <div class="project-item">
+                <img src="Project15-removebg-preview.png" alt="Project 19">
+            </div>
+            <div class="project-item">
+                <img src="Project20.png" alt="Project 20">
+            </div>
+        </div>
 
- </section>
+        <div class="AMA">
+            <span>My experience in the blockchain sector</span>
+            <div class="AMA-container">
+                <div class="AMA-item">
+                    <img src="[removal.ai]_5bb20b11-6583-4cf2-98c1-d5cfe460ed72-image-6_RTTPTN.png" alt="Experience 1">
+                </div>
+                <div class="AMA-item">
+                    <img src="image__9_-removebg-preview.png" alt="Experience 2">
+                </div>
+                <div class="AMA-item">
+                    <img src="geodb (3).png" alt="Experience 3">
+                </div>
+                <div class="AMA-item">
+                    <img src="geodb (2).png" alt="Experience 4">
+                </div>
+                <div class="AMA-item">
+                    <img src="geodb (4).png" alt="Experience 5">
+                </div>
+            </div>
+        </div>
+    </section>
 
- <!-- footer website -->
- <footer>
-    <p class="scroll-scale"> Copyright &copy; 2023 - 2025 by Muhamad Novreysa || All Right Reserved.</p>
-    <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
- </footer>
- 
-    <script src="script.js"></script>
+    <!-- Contact section -->
+    <section id="contact" class="contact">
+        <div class="main-text scroll-scale">
+            <span>ask me question</span>
+            <h2>Contact Me</h2>
+        </div>
+        <form method="post" name="portofolio-contact" action="" class="scroll-top">
+            <input type="text" placeholder="Your Name" name="nama" required>
+            <input type="text" placeholder="Your Number" name="number" required>
+            <input type="email" placeholder="Your Email" name="email" required>
+            <textarea name="pesan" id="pesan" cols="30" rows="10" placeholder="Your Message" name="pesan" required></textarea>
+            <div class="btn-box formBtn">
+                <button type="submit" class="btn">Send Message</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- footer website -->
+    <footer>
+        <p class="scroll-scale">Copyright &copy; 2023 - 2025 by Muhamad Novreysa || All Right Reserved.</p>
+        <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+    </footer>
+
     <script>
+        // Text animation
+        let words = document.querySelectorAll(".word");
+        words.forEach((word) => {
+            let letters = word.textContent.split("");
+            word.textContent = "";
+            letters.forEach((letter) => {
+                let span = document.createElement("span");
+                span.textContent = letter;
+                span.className = "letter";
+                word.append(span);
+            });
+        });
+
+        let currentWordIndex = 0;
+        let maxWordIndex = words.length - 1;
+        words[currentWordIndex].style.opacity = "1";
+
+        let changeText = () => {
+            let currentWord = words[currentWordIndex];
+            let nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
+
+            Array.from(currentWord.children).forEach((letter, i) => {
+                setTimeout(() => {
+                    letter.className = "letter out";
+                }, i * 80);
+            });
+            nextWord.style.opacity = "1";
+            Array.from(nextWord.children).forEach((letter, i) => {
+                letter.className = "letter behind";
+                setTimeout(() => {
+                    letter.className = "letter in";
+                }, 340 + i * 80);
+            });
+            currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+        };
+
+        changeText();
+        setInterval(changeText, 3000);
+
+        // Circle skill animation
+        const circles = document.querySelectorAll('.circle');
+        circles.forEach(elem => {
+            var dots = elem.getAttribute("data-dots");
+            var marked = elem.getAttribute("data-percent");
+            var percent = Math.floor(dots * marked / 100);
+            var points = "";
+            var rotate = 360 / dots;
+
+            for (let i = 0; i < dots; i++) {
+                points += `<div class="points" style="--i:${i};--rot:${rotate}deg"></div>`;
+            }
+            elem.innerHTML = points;
+
+            const pointsMarked = elem.querySelectorAll('.points');
+            for (let i = 0; i < percent; i++) {
+                pointsMarked[i].classList.add('marked')
+            }
+        });
+
+        // Active menu
+        let menuLi = document.querySelectorAll('header ul li a');
+        let section = document.querySelectorAll('section');
+
+        function activeMenu() {
+            let len = section.length;
+            while (--len && window.scrollY + 97 < section[len].offsetTop) { }
+            menuLi.forEach(sec => sec.classList.remove("active"));
+            menuLi[len].classList.add("active");
+        }
+
+        activeMenu();
+        window.addEventListener("scroll", activeMenu);
+
+        // Sticky navbar
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", function () {
+            header.classList.toggle("sticky", window.scrollY > 50)
+        });
+
+        // Mobile menu toggle
+        const menuIcon = document.getElementById("menu-icon");
+        const navlist = document.querySelector(".navlist");
+
+        menuIcon.addEventListener("click", () => {
+            navlist.classList.toggle("active");
+            menuIcon.classList.toggle("bx-x");
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll(".navlist a").forEach(link => {
+            link.addEventListener("click", () => {
+                navlist.classList.remove("active");
+                menuIcon.classList.remove("bx-x");
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show-items");
+                } else {
+                    entry.target.classList.remove("show-items");
+                }
+            });
+        });
+
+        const scrollScale = document.querySelectorAll(".scroll-scale");
+        scrollScale.forEach((el) => observer.observe(el));
+
+        const scrollBottom = document.querySelectorAll(".scroll-bottom");
+        scrollBottom.forEach((el) => observer.observe(el));
+
+        const scrollTop = document.querySelectorAll(".scroll-top");
+        scrollTop.forEach((el) => observer.observe(el));
+
+        // Form submission
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwICW7CVt6Uc9RXhobYfdwmrfg15lGI1g2HPicViIfHhbormwor5fjDPgPlO5fGMXKA/exec'
         const form = document.forms['portofolio-contact']
-    
 
         form.addEventListener('submit', e => {
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => alert("Thank you! your form is submitted successfully."))
-            .then(() => {window.location.reload(); })
-            .catch(error => console.error('Error!', error.message))
-        })
-      </script>
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    alert("Thank you! Your form is submitted successfully.");
+                    form.reset();
+                })
+                .catch(error => console.error('Error!', error.message))
+        });
+
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.fillter-buttons .button');
+        const portfolioItems = document.querySelectorAll('.port-box');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
