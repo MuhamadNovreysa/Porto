@@ -729,6 +729,8 @@
             animation: writer 7s;
         }
 
+
+        
         /* skill right */
         .professional {
             display: grid;
@@ -787,6 +789,73 @@
             animation: glow 0.04s linear forwards;
             animation-delay: calc(var(--i) * 0.05s);
         }
+
+        /* Tech Stack Section */
+.tech {
+    padding: 100px 10%;
+    background: var(--bg-color);
+}
+
+.tech-container {
+    margin-top: 2rem;
+}
+
+.tech-category {
+    margin-bottom: 3rem;
+}
+
+.tech-category h3 {
+    font-size: 1.5rem;
+    color: var(--hover-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tech-category h3 i {
+    font-size: 1.8rem;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1.5rem;
+}
+
+.tech-item {
+    background: var(--secon-bg-color);
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border: 1px solid var(--hover-color);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--neon-box-shadow);
+}
+
+.tech-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.tech-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.tech-item p {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
 
         /* Project section css */
         .project-container {
@@ -1545,6 +1614,72 @@
             </div>
         </div>
     </section>
+    <!-- ===== Tech Stack Section ===== -->
+<section id="tech" class="tech">
+    <div class="main-text scroll-scale">
+        <span>My Digital Arsenal</span>
+        <h2>Tools & Tech Stack</h2>
+    </div>
+
+    <div class="tech-container scroll-bottom">
+        <!-- Kategori 1: Community Tools -->
+        <div class="tech-category">
+            <h3><i class='bx bxs-group'></i> Community Management</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram">
+                    <p>Telegram Bots</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord">
+                    <p>Discord</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png" alt="Slack">
+                    <p>Slack</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategori 2: Design & Content -->
+        <div class="tech-category">
+            <h3><i class='bx bxs-palette'></i> Design & Content</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968520.png" alt="Canva">
+                    <p>Canva</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Photoshop">
+                    <p>Photoshop</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Figma">
+                    <p>Figma</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategori 3: Analytics -->
+        <div class="tech-category">
+            <h3><i class='bx bx-line-chart'></i> Analytics</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968472.png" alt="Google Analytics">
+                    <p>Google Analytics</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968514.png" alt="Hotjar">
+                    <p>Hotjar</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968528.png" alt="Mixpanel">
+                    <p>Mixpanel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Project section -->
     <section id="project" class="project">
